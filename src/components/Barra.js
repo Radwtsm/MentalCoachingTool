@@ -38,7 +38,7 @@ const Barra = (props) => {
 }
 
 function hexToRgba(hexColor) {
-    console.log(hexColor)
+    // console.log(hexColor)
     if (!hexColor.startsWith('#')) {
       throw new Error('Hex color code must start with #');
     }
@@ -52,7 +52,7 @@ function hexToRgba(hexColor) {
     const r = parseInt(hexColor.slice(0, 2), 16);
     const g = parseInt(hexColor.slice(2, 4), 16);
     const b = parseInt(hexColor.slice(4, 6), 16);
-    console.log(`rgba(${r}, ${g}, ${b}, 1)`)
+    // console.log(`rgba(${r}, ${g}, ${b}, 1)`)
     return `rgba(${r}, ${g}, ${b}, 1)`;
   }
 

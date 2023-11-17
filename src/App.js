@@ -6,28 +6,11 @@ import { TextareaAutosize } from "@mui/base/TextareaAutosize";
 
 //firebase
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+
 import { collection, getDocs, getDoc, doc } from "firebase/firestore";
 import Barra from "./components/Barra";
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyA_Zxf0Q1ukvqWRipj_KUY7tzfJPVjfPPA",
-  authDomain: "mentalcoaching2.firebaseapp.com",
-  projectId: "mentalcoaching2",
-  storageBucket: "mentalcoaching2.appspot.com",
-  messagingSenderId: "29589921411",
-  appId: "1:29589921411:web:916f98b6df9c99cdaec5b6"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-// Initialize Cloud Firestore and get a reference to the service
-const db = getFirestore(app);
+import ModalUnstyled from "./components/AdminModal";
+import { db } from "./components/settings/firebaseconfig";
 
 let listaSinistra = []
 let listaDestra = []
@@ -53,8 +36,30 @@ queryElementiBarra.forEach((doc, i) => {
     testo: doc.data().testo
   })
 });
-console.log(el)
+// console.log(el)
 
+// const settings = {
+//   utils: {
+//     changeColor: function (colorString) {
+
+//     },
+//     getColor: async function () {
+//       const docRef = doc(db, "colori", "barra");
+//       const docSnap = await getDoc(docRef);
+//       // const colore_barra = docSnap.data().colore
+
+//       return docSnap;
+//     },
+//     setColor: async function (stringColor) {
+//       const colorRef = db.collection('colori').doc('barra');
+
+//       // Set the 'capital' field of the city
+//       const res = await colorRef.update({ colore: stringColor });
+//       updateDoc(colorRef)
+//       return res
+//     }
+//   }
+// }
 
 
 //colori
@@ -69,7 +74,7 @@ const colore_barra = docSnap.data().colore
 function App() {
 
   const [elementi, setElementi] = useState(el)
-  console.log('eccolooo', colore_barra)
+  // console.log('eccolooo', colore_barra)
   // const lista_elementi1 = [
   //   "paure",
   //   "frustrazioni",
@@ -127,32 +132,32 @@ function App() {
             <option>Metodo</option>
 
           </select>
-          <span className="flex gap-2"><p>:</p><p className="text-green-600">Forza 6</p></span>
+          <span className="flex gap-2"><p>:</p><input placeholder="TITOLO" type="text" className="text-green-600 p-2"></input></span>
         </span>
         <div className="flex gap-2">
 
-        <TextareaAutosize
+          <TextareaAutosize
 
-className="text-sm h-full p-3 text-red-600 border border-black rounded-sm w-1/2"
-aria-label="empty textarea"
-placeholder="Descrizione"
+            className="text-sm h-full p-3 text-red-600 border border-black rounded-sm w-1/2"
+            aria-label="empty textarea"
+            placeholder="Descrizione"
 
-/>
+          />
 
-<TextareaAutosize
+          <TextareaAutosize
 
-className="text-sm h-full p-3 text-red-600 border border-black rounded-sm w-1/2"
-aria-label="empty textarea"
-placeholder="Descrizione"
+            className="text-sm h-full p-3 text-green-600 border border-black rounded-sm w-1/2"
+            aria-label="empty textarea"
+            placeholder="Descrizione"
 
-/>
+          />
         </div>
         <div className="flex justify-center gap-10 border border-black border-sm my-3 p-2">
           <div className="w-1/2">
 
             {listaSinistra.map((el) => {
               return (
-                <div className="w-full" key={el}>
+                <div className="text-sm w-full" key={el}>
                   <p>{el}</p>
                   <TextareaAutosize
                     id={el}
@@ -171,7 +176,7 @@ placeholder="Descrizione"
 
             {listaDestra.map((el) => {
               return (
-                <div className="w-full" key={el}>
+                <div className="text-sm w-full" key={el}>
                   <p>{el}</p>
 
                   <TextareaAutosize
@@ -187,9 +192,22 @@ placeholder="Descrizione"
             })}
           </div>
         </div>
+        <div>
+          <p className="text-left text-sm text-green-600">Trasformazione che cerca</p>
+          <TextareaAutosize
+                    id={el}
+                    // onChange={(e) => isNotEmpty(e.target)}
+                    className=" text-sm w-full p-3"
+                    aria-label="empty textarea"
+                    placeholder="..."
+                    
+                  />
+        </div>
       </header>
 
       <Barra colore={colore_barra} el={elementi} set={setElementi} />
+
+      <ModalUnstyled  />
     </div>
   );
 }
