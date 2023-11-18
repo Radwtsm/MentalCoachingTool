@@ -5,14 +5,24 @@ import { styled, Box } from '@mui/system';
 import { Modal as BaseModal } from '@mui/base/Modal';
 import Settings from './settings/Settings';
 
-export default function ModalUnstyled({settings}) {
+export default function ModalUnstyled({settings,changeable}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const password = 'Admin123'
+  const [unlocked,setUnlocked] = React.useState(true)
+  const [input,setInput] = React.useState('')
+
+  function enterAdmin(input){
+    console.log(input)
+    if (input===password){
+        setUnlocked(false)
+    }
+  }
   return (
-    <div>
-      <TriggerButton className='absolute bottom-1 left-1' type="button" onClick={handleOpen}>
+    <div className='w-full p-10'>
+      <TriggerButton className='' type="button" onClick={handleOpen}>
         Admin
       </TriggerButton>
       <Modal
@@ -22,9 +32,17 @@ export default function ModalUnstyled({settings}) {
         onClose={handleClose}
         slots={{ backdrop: StyledBackdrop }}
       >
-        <ModalContent sx={style}>
-          <Settings settings={settings}/>
-        </ModalContent>
+        
+        {<ModalContent sx={style}>
+            {unlocked && (
+            <div>
+                 <input placeholder='password' type="text" value={input} onChange={(e)=>setInput(e.target.value)}/>
+                <button onClick={()=>enterAdmin(input)}>ACCESS</button>
+            </div>
+           
+            )}
+           {!unlocked && <Settings settings={settings} changeable={changeable}/> } 
+          </ModalContent>}
       </Modal>
     </div>
   );
@@ -69,6 +87,7 @@ const grey = {
 };
 
 const Modal = styled(BaseModal)`
+  width:100%;
   position: fixed;
   z-index: 1300;
   inset: 0;
@@ -86,11 +105,17 @@ const StyledBackdrop = styled(Backdrop)`
 `;
 
 const style = {
-  width: 400,
+display:'flex',
+justifyContent:'center',
+alignItems:'center',
+  width: '50%',
+  heigh:'70vh',
+  padding:'2rem',
 };
 
 const ModalContent = styled(Box)(
   ({ theme }) => `
+  width:100%;
   display: flex;
   flex-direction: column;
   gap: 8px;

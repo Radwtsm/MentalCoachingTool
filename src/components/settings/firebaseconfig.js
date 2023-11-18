@@ -2,7 +2,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import {getDoc,doc,updateDoc } from "firebase/firestore";
-
 export const firebaseConfig = {
     apiKey: "AIzaSyA_Zxf0Q1ukvqWRipj_KUY7tzfJPVjfPPA",
     authDomain: "mentalcoaching2.firebaseapp.com",
@@ -31,12 +30,14 @@ export const settings = {
         return docSnap;
       },
       setColor: async function (stringColor) {
-        const colorRef = db.collection('colori').doc('barra');
-  
+        let colorRef = doc(db, "colori", "barra");
+        await updateDoc(colorRef, {
+            colore: stringColor
+          });
         // Set the 'capital' field of the city
-        const res = await colorRef.update({ colore: stringColor });
-        updateDoc(colorRef)
-        return res
+        // const res = await docRef.update({ colore: stringColor });
+        // updateDoc(docRef)
+        
       }
     }
   }

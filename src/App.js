@@ -1,24 +1,31 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./App.css";
 import { TextareaAutosize } from "@mui/base/TextareaAutosize";
-// Import the functions you need from the SDKs you need
+import html2canvas from "html2canvas";
+
+// import { useScreenshot } from 'use-react-screenshot'
+// Import the functions you need from imthe SDKs you need
 
 
 //firebase
 // Import the functions you need from the SDKs you need
 
-import { collection, getDocs, getDoc, doc } from "firebase/firestore";
+import { collection, getDocs, getDoc, doc,setDoc,deleteDoc } from "firebase/firestore";
 import Barra from "./components/Barra";
 import ModalUnstyled from "./components/AdminModal";
 import { db } from "./components/settings/firebaseconfig";
+import { style } from "@mui/system";
+import CustomizedSteppers from "./components/Stepper";
 
 let listaSinistra = []
 let listaDestra = []
+
 let el = []
 
 const querySinistra = await getDocs(collection(db, "lista_sinistra"));
 querySinistra.forEach((doc) => {
   listaSinistra.push(doc.data().nome)
+  
 });
 
 const queryDestra = await getDocs(collection(db, "lista_destra"));
@@ -68,12 +75,40 @@ const docSnap = await getDoc(docRef);
 
 const colore_barra = docSnap.data().colore
 
+const exportAsImage = async (el, imageFileName,) => {
+  const style = document.createElement('style');
+  document.head.appendChild(style);
+  style.sheet?.insertRule('body > div:last-child img { display: inline-block; }');
 
+
+
+  const canvas = await html2canvas(el);
+  const image = canvas.toDataURL("image/png", 1.0);
+  downloadImage(image, imageFileName);
+  };const downloadImage = (blob, fileName) => {
+  const fakeLink = window.document.createElement("a");
+  fakeLink.style = "display:none;";
+  fakeLink.download = fileName;
+  
+  fakeLink.href = blob;
+  
+  document.body.appendChild(fakeLink);
+  fakeLink.click();
+  document.body.removeChild(fakeLink);
+  
+  fakeLink.remove();
+  // style.remove()
+  };
 
 
 function App() {
 
   const [elementi, setElementi] = useState(el)
+  const [colore,setColore] = useState(colore_barra)
+  const [sinistra,setSinistra] = useState(listaSinistra)
+  const [destra,setDestra] = useState(listaDestra)
+  const imageRef = useRef();
+
   // console.log('eccolooo', colore_barra)
   // const lista_elementi1 = [
   //   "paure",
@@ -120,8 +155,64 @@ function App() {
   //   }
   // };
 
+  async function addLista(direzione,testo){
+    const lista_dir = direzione === 'sinistra' ? 'lista_sinistra' : 'lista_destra'
+    // Add a new document in collection "cities"
+await setDoc(doc(db, lista_dir, testo), {
+  nome: testo
+});
+
+if (direzione==='sinistra') {
+  let new_arr = []
+  let querySinistra = await getDocs(collection(db, "lista_sinistra"));
+  querySinistra.forEach((doc) => new_arr.push(doc.data().nome))
+  setSinistra(new_arr)
+} else {
+  let new_arr = []
+  let queryDestra = await getDocs(collection(db, "lista_destra"))
+  queryDestra.forEach((doc) => new_arr.push(doc.data().nome))
+  setDestra(new_arr)
+}
+
+  }
+
+  async function removeLista(direzione,testo) {
+    const lista = direzione === 'sinistra' ? 'lista_sinistra' : 'lista_destra'
+    await deleteDoc(doc(db, lista, testo));
+
+    if (direzione==='sinistra') {
+      let new_arr = []
+      let querySinistra = await getDocs(collection(db, "lista_sinistra"));
+      querySinistra.forEach((doc) => new_arr.push(doc.data().nome))
+      setSinistra(new_arr)
+    } else {
+      let new_arr = []
+      let queryDestra = await getDocs(collection(db, "lista_destra"))
+      queryDestra.forEach((doc) => new_arr.push(doc.data().nome))
+      setDestra(new_arr)
+    }
+  }
+
+  async function getListaElementi(){
+    let new_arr = []
+    let queryElementi = await getDocs(collection(db, "lista_elementi"));
+    queryElementi.forEach((doc) => new_arr.push(doc.data()))
+    setElementi(new_arr)
+  }
+
+
+  const changeable = {
+    colore:colore_barra,
+    setColore:setColore,
+    sinistra:sinistra,
+    destra:destra,
+    addLista:addLista,
+    removeLista,
+    elementi:elementi,
+  }
+
   return (
-    <div className="App text-black App-header border border-black rounded-sm font-bold">
+    <div className="App text-black App-header border border-black rounded-sm font-bold" ref={imageRef}>
       <header className=" p-3 my-10 w-full mx-20 ">
         <span className="flex gap-2">
           <select name="TIPO" id="tipo">
@@ -155,9 +246,9 @@ function App() {
         <div className="flex justify-center gap-10 border border-black border-sm my-3 p-2">
           <div className="w-1/2 flex flex-wrap">
 
-            {listaSinistra.map((el) => {
+            {sinistra.map((el) => {
               return (
-                <div className="text-sm w-full basis-1/3 my-10" key={el}>
+                <div className="text-sm w-full basis-1/2 my-10" key={el}>
                   <p className="text-left">{el}</p>
                   <TextareaAutosize
                     id={el}
@@ -174,9 +265,9 @@ function App() {
           </div>
           <div className="w-1/2 flex flex-wrap">
 
-            {listaDestra.map((el) => {
+            {destra.map((el) => {
               return (
-                <div className="text-sm w-full basis-1/3 my-10 " key={el}>
+                <div className="text-sm w-full basis-1/2 my-10 " key={el}>
                   <p className="text-left">{el}</p>
 
                   <TextareaAutosize
@@ -208,9 +299,10 @@ function App() {
       </header>
 
 
-      <Barra colore={colore_barra} el={elementi} set={setElementi} />
-
-      <ModalUnstyled  />
+      <Barra changeable={changeable} colore={colore} el={elementi} set={setElementi} />
+      {/* <CustomizedSteppers changeable={changeable}/> */}
+      <ModalUnstyled changeable={changeable} />
+      <button onClick={()=>exportAsImage(imageRef.current,'test')}>SAVE PICT</button>
     </div>
   );
 }
