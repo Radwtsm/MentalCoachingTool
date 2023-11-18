@@ -58,11 +58,14 @@ function hexToRgba(hexColor) {
 
   return (
     <>
-<div className=" h-9 rounded-md flex justify-around items-around mx-3" style={{backgroundColor:props.colore,background:'rgb(2,0,36)',background:`linear-gradient(90deg, rgba(2,0,36,1) 0%, ${hexToRgba(props.colore)}`}} ref={myRef}>
+    <div className='flex'>
+    <div className='flex justify-center mb-5 '><p className='bg-black shadow-lg shadow-white w-min rounded-full text-white' style={{width:'40px',height:'40px'}}>A</p></div>
+
+    <div className=" h-9 rounded-md flex justify-around items-around  w-10/12" style={{backgroundColor:props.colore,background:'rgb(2,0,36)',background:`linear-gradient(90deg, rgba(2,0,36,1) 0%, ${hexToRgba(props.colore)}`,marginLeft:'1rem',marginRight:'1rem'}} ref={myRef}>
     {props.el.map(({simbolo,testo})=>{
         return(
             <div key={simbolo} className='overflow-visible'>
-                <div className='flex justify-center mb-5'><p className='bg-black shadow-lg shadow-white w-min rounded-full text-white' style={{width:'40px',height:'40px'}}>{simbolo}</p></div>
+                <div className='flex justify-center mb-5 '><p className='bg-black shadow-lg shadow-white w-min rounded-full text-white' style={{width:'40px',height:'40px'}}>{simbolo}</p></div>
                 <div className='border border-black border-sm mx-2 p-2'>
                 <h2 className='text-sm text-white rounded-md' style={{backgroundColor:props.colore,background:'rgb(2,0,36)',background:`linear-gradient(90deg, rgba(2,0,36,1) 0%, ${hexToRgba(props.colore)}`}}>{testo}</h2>
                 <TextareaAutosize
@@ -70,7 +73,7 @@ function hexToRgba(hexColor) {
                     // onChange={(e) => isNotEmpty(e.target)}
                     className="text-sm"
                     aria-label="empty textarea"
-                    placeholder="Empty"
+                    placeholder="..."
                     maxLength={400}
                     onChange={(e)=>onChange(e)}
                   />
@@ -79,6 +82,10 @@ function hexToRgba(hexColor) {
         )
     })}
 </div>
+<div className='flex justify-center mb-5 '><p className='bg-black shadow-lg shadow-white w-min rounded-full text-white' style={{width:'40px',height:'40px'}}>B</p></div>
+
+    </div>
+
 <button className='my-32' onClick={()=>check()}>check</button>
 </>
   )

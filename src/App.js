@@ -121,8 +121,8 @@ function App() {
   // };
 
   return (
-    <div className="App text-black App-header border border-black rounded-sm">
-      <header className="border border-black rounded-sm p-3 my-10 w-4/5 ">
+    <div className="App text-black App-header border border-black rounded-sm font-bold">
+      <header className=" p-3 my-10 w-full mx-20 ">
         <span className="flex gap-2">
           <select name="TIPO" id="tipo">
             <option>Sistema</option>
@@ -138,7 +138,7 @@ function App() {
 
           <TextareaAutosize
 
-            className="text-sm h-full p-3 text-red-600 border border-black rounded-sm w-1/2"
+            className="text-sm h-full p-3 text-red-600 border border-black rounded-sm w-1/2 font-normal"
             aria-label="empty textarea"
             placeholder="Descrizione"
 
@@ -146,25 +146,25 @@ function App() {
 
           <TextareaAutosize
 
-            className="text-sm h-full p-3 text-green-600 border border-black rounded-sm w-1/2"
+            className="text-sm h-full p-3 text-green-600 border border-black rounded-sm w-1/2 font-normal"
             aria-label="empty textarea"
             placeholder="Descrizione"
 
           />
         </div>
         <div className="flex justify-center gap-10 border border-black border-sm my-3 p-2">
-          <div className="w-1/2">
+          <div className="w-1/2 flex flex-wrap">
 
             {listaSinistra.map((el) => {
               return (
-                <div className="text-sm w-full" key={el}>
-                  <p>{el}</p>
+                <div className="text-sm w-full basis-1/3 my-10" key={el}>
+                  <p className="text-left">{el}</p>
                   <TextareaAutosize
                     id={el}
                     // onChange={(e) => isNotEmpty(e.target)}
-                    className="text-sm w-full"
+                    className="text-sm w-full p-1 font-normal"
                     aria-label="empty textarea"
-                    placeholder="Empty"
+                    placeholder="..."
                     maxLength={400}
                   />
 
@@ -172,19 +172,19 @@ function App() {
               );
             })}
           </div>
-          <div className="w-1/2">
+          <div className="w-1/2 flex flex-wrap">
 
             {listaDestra.map((el) => {
               return (
-                <div className="text-sm w-full" key={el}>
-                  <p>{el}</p>
+                <div className="text-sm w-full basis-1/3 my-10 " key={el}>
+                  <p className="text-left">{el}</p>
 
                   <TextareaAutosize
                     id={el}
                     // onChange={(e) => isNotEmpty(e.target)}
-                    className="text-sm w-full"
+                    className="p-1 text-sm w-full font-normal"
                     aria-label="empty textarea"
-                    placeholder="Empty"
+                    placeholder="..."
                     maxLength={400}
                   />
                 </div>
@@ -197,13 +197,16 @@ function App() {
           <TextareaAutosize
                     id={el}
                     // onChange={(e) => isNotEmpty(e.target)}
-                    className=" text-sm w-full p-3"
+                    className=" text-sm w-full font-normal
+                    
+                     h-full p-3  border border-black rounded-sm  font-normal"
                     aria-label="empty textarea"
                     placeholder="..."
                     
                   />
         </div>
       </header>
+
 
       <Barra colore={colore_barra} el={elementi} set={setElementi} />
 
