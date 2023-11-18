@@ -16,12 +16,12 @@ const ElementEdit = ({changeable}) => {
     <p>LISTA ELEMENTI</p>
     {el.map((ele,index)=>{
         let value = el.testo
-        return (<div>
+        return (<div key={copy[index].testo} className=''>
         
         <p>{index}</p>
-        <input onChange={(e)=>onChange(e,index)} key={ele.testo} value={copy[index].testo}/>
+        <p onclick>{copy[index].testo}</p>
     </div>)})}
-
+    
 
    </div>
   )

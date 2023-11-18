@@ -34,6 +34,7 @@ const Barra = (props) => {
 
     let filtered = props.el.filter((el)=> next.includes(el.testo))
     props.set(filtered)
+    props.changeable.screen(props.changeable.ref,'test')
     // console.log(filtered)
 }
 

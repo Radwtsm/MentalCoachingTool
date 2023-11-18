@@ -109,6 +109,7 @@ function App() {
   const [destra,setDestra] = useState(listaDestra)
   const imageRef = useRef();
 
+  // console.log(el)
   // console.log('eccolooo', colore_barra)
   // const lista_elementi1 = [
   //   "paure",
@@ -209,6 +210,8 @@ if (direzione==='sinistra') {
     addLista:addLista,
     removeLista,
     elementi:elementi,
+    screen:exportAsImage,
+    ref:imageRef,
   }
 
   return (
@@ -300,9 +303,10 @@ if (direzione==='sinistra') {
 
 
       <Barra changeable={changeable} colore={colore} el={elementi} set={setElementi} />
+      <button onClick={()=>exportAsImage(imageRef.current,'test')}>SAVE PICT</button>
+
       {/* <CustomizedSteppers changeable={changeable}/> */}
       <ModalUnstyled changeable={changeable} />
-      <button onClick={()=>exportAsImage(imageRef.current,'test')}>SAVE PICT</button>
     </div>
   );
 }
