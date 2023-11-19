@@ -34,7 +34,7 @@ const Barra = (props) => {
 
     let filtered = props.el.filter((el)=> next.includes(el.testo))
     props.set(filtered)
-    props.changeable.screen(props.changeable.ref,'test')
+    // props.changeable.screen(props.changeable.ref,'test')
     // console.log(filtered)
 }
 
@@ -67,16 +67,17 @@ function hexToRgba(hexColor) {
         return(
             <div key={testo} className='overflow-visible w-30'>
                 <div className='flex justify-center mb-5 '><p className='bg-black shadow-lg shadow-white w-min rounded-full text-white' style={{width:'40px',height:'40px'}}>{simbolo}</p></div>
-                <div className='border border-black border-sm mx-2 p-2'>
-                <h2 className='text-sm text-white rounded-md' style={{backgroundColor:props.colore,background:'rgb(2,0,36)',background:`linear-gradient(90deg, rgba(2,0,36,1) 0%, ${hexToRgba(props.colore)}`}}>{testo}</h2>
+                <div className='border border-black border-sm mx-2 p-2   h-60 '>
+                <h2 className='text-sm text-white rounded-md h-20 text-center flex justify-center items-center' style={{backgroundColor:props.colore}}><p>{testo}</p></h2>
                 <TextareaAutosize
                     id={testo}
                     // onChange={(e) => isNotEmpty(e.target)}
-                    className="text-sm w-full"
+                    className="text-sm w-full font-medium"
                     aria-label="empty textarea"
                     placeholder="..."
-                    maxLength={400}
+                    maxLength={142}
                     onChange={(e)=>onChange(e)}
+                    style={{height:'140px'}}
                   />
                   </div>
             </div>
@@ -87,7 +88,7 @@ function hexToRgba(hexColor) {
 
     </div>
 
-<button className='my-32' onClick={()=>check()}>check</button>
+<button className='mt-80 text-green-500' onClick={()=>check()}>check</button>
 </div>
   )
 }

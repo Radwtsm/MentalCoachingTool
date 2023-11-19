@@ -226,37 +226,43 @@ if (direzione==='sinistra') {
             <option>Metodo</option>
 
           </select>
-          <span className="flex gap-2"><p>:</p><input placeholder="TITOLO" type="text" className="text-green-600 p-2"></input></span>
+          <span className="flex gap-2 w-full"><p>:</p><input placeholder="TITOLO"  type="text" className="text-green-600 p-2 w-full"></input></span>
         </span>
-        <div className="flex gap-2">
+        <div className=" flex justify-center gap-10  my-3  " style={{height:'104px '}}>
 
           <TextareaAutosize
 
-            className="text-sm h-full p-3 text-red-600 border border-black rounded-sm w-1/2 font-normal"
+            className="text-sm p-3 text-red-600 border border-black rounded-sm w-1/2 font-normal h-full"
             aria-label="empty textarea"
             placeholder="Descrizione"
-
+            style={{height:'100%'}}
+            maxLength={280}
+            
           />
 
           <TextareaAutosize
 
             className="text-sm h-full p-3 text-green-600 border border-black rounded-sm w-1/2 font-normal"
+            style={{height:'100%'}}
+            maxLength={280}
+
             aria-label="empty textarea"
             placeholder="Descrizione"
 
           />
         </div>
-        <div className="flex justify-center gap-10 border border-black border-sm my-3 p-2">
-          <div className="w-1/2 flex flex-wrap">
+        <div className="flex justify-center gap-10  my-3  ">
+          <div className="w-1/2 flex flex-wrap border border-black border-sm p-1">
 
-            {sinistra.map((el) => {
+            {sinistra.reverse().map((el) => {
               return (
-                <div className="text-sm w-full basis-1/2 my-10" key={el}>
+                <div className="text-sm w-full basis-1/2 " key={el}>
                   <p className="text-left">{el}</p>
                   <TextareaAutosize
                     id={el}
                     // onChange={(e) => isNotEmpty(e.target)}
                     className="text-sm w-full p-1 font-normal"
+                    style={{height:'250px'}}
                     aria-label="empty textarea"
                     placeholder="..."
                     maxLength={400}
@@ -266,11 +272,11 @@ if (direzione==='sinistra') {
               );
             })}
           </div>
-          <div className="w-1/2 flex flex-wrap">
+          <div className="w-1/2 flex flex-wrap border border-black border-sm p-2">
 
-            {destra.map((el) => {
+            {destra.reverse().map((el) => {
               return (
-                <div className="text-sm w-full basis-1/2 my-10 " key={el}>
+                <div className="text-sm w-full basis-1/2   " key={el}>
                   <p className="text-left">{el}</p>
 
                   <TextareaAutosize
@@ -278,6 +284,8 @@ if (direzione==='sinistra') {
                     // onChange={(e) => isNotEmpty(e.target)}
                     className="p-1 text-sm w-full font-normal"
                     aria-label="empty textarea"
+                    style={{height:'250px'}}
+
                     placeholder="..."
                     maxLength={400}
                   />
@@ -286,17 +294,18 @@ if (direzione==='sinistra') {
             })}
           </div>
         </div>
-        <div>
+        <div style={{height:'93px'}}>
           <p className="text-left text-sm text-green-600">Trasformazione che cerca</p>
           <TextareaAutosize
                     id={el}
                     // onChange={(e) => isNotEmpty(e.target)}
                     className=" text-sm w-full font-normal
                     
-                     h-full p-3  border border-black rounded-sm  font-normal"
+                     h-full p-3   rounded-sm  font-normal"
                     aria-label="empty textarea"
                     placeholder="..."
-                    
+                    style={{height:'100%'}}
+                    maxLength={481}
                   />
         </div>
       </header>
