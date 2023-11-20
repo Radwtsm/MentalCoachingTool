@@ -228,7 +228,7 @@ if (direzione==='sinistra') {
   }
 
   return (
-    <div className="App text-black App-header border border-black rounded-sm font-bold" ref={imageRef} >
+    <div className="App text-black App-header border border-black rounded-sm font-bold pt-3" ref={imageRef} >
       
       <header className=" p-3  w-full mx-20 ">
         <span className="flex gap-2 items-center">
