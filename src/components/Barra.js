@@ -62,7 +62,7 @@ function hexToRgba(hexColor) {
     <div className='flex'>
     <div className='flex justify-center mb-5 '><p className='bg-black shadow-lg shadow-white w-min rounded-full text-white' style={{width:'40px',height:'40px'}}>A</p></div>
 
-    <div className=" h-9 rounded-md flex justify-around items-around  w-10/12" style={{backgroundColor:props.colore,background:'rgb(2,0,36)',background:`linear-gradient(90deg, rgba(2,0,36,1) 0%, ${hexToRgba(props.colore)}`,marginLeft:'1rem',marginRight:'1rem'}} ref={myRef}>
+    <div className=" h-9 rounded-md flex justify-around items-around  w-10/12 hexagon" style={{backgroundColor:props.colore,background:'rgb(2,0,36)',background:`linear-gradient(90deg, rgba(2,0,36,1) 0%, ${hexToRgba(props.colore)}`,marginLeft:'1rem',marginRight:'1rem'}} ref={myRef}>
     {props.el.map(({simbolo,testo})=>{
         return(
             <div key={testo} className='overflow-visible w-30'>
@@ -83,6 +83,8 @@ function hexToRgba(hexColor) {
             </div>
         )
     })}
+    
+    
 </div>
 <div className='flex justify-center mb-5 '><p className='bg-black shadow-lg shadow-white w-min rounded-full text-white' style={{width:'40px',height:'40px'}}>B</p></div>
 
