@@ -185,7 +185,7 @@ const BarraDef = ({colore,changeable}) => {
         )
     })}
     </div>
-<div className='flex justify-center mb-5 '><p className='bg-black shadow-lg shadow-white w-min rounded-full text-white' style={{width:'40px',height:'40px'}}>B</p></div>
+<div className='flex justify-center mb-5 '><p className='bg-black shadow-lg  w-min rounded-full text-white' style={{width:'40px',height:'40px'}}>B</p></div>
 
     </div>
 
