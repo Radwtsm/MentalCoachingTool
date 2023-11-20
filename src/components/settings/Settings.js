@@ -10,9 +10,9 @@ const Settings = ({settings,changeable}) => {
   return (
     <div>
         <Color settings={settings} changeable={changeable} />
-        {/* <ArrayEdit changeable={changeable}/> */}
+        <ArrayEdit changeable={changeable}/>
         {/* <ElementEdit changeable={changeable}/> */}
-        <EditBarraEl changeable={changeable}/>
+        {/* <EditBarraEl changeable={changeable}/> */}
     </div>
   )
 }

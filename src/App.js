@@ -228,7 +228,7 @@ if (direzione==='sinistra') {
   }
 
   return (
-    <div className="App text-black App-header border border-black rounded-sm font-bold pt-3" ref={imageRef} >
+    <div className="App text-black App-header border border-black rounded-sm font-bold mt-3" ref={imageRef} >
       
       <header className=" p-3  w-full mx-20 ">
         <span className="flex gap-2 items-center">
@@ -244,7 +244,7 @@ if (direzione==='sinistra') {
             <option>Metodo</option>
 
           </select>
-          <span className="flex gap-2 w-full"><p>:</p><input placeholder="TITOLO"  type="text" className="p-2 w-full"></input></span>
+          <span className="flex gap-2 w-full"><p>:</p><input placeholder="TITOLO"  type="text" className="p-2 w-full pt-6"></input></span>
         </span>
         <div className=" flex justify-center gap-10  my-3  " style={{height:'104px '}}>
 
