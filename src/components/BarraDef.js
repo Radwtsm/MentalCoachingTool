@@ -160,14 +160,14 @@ const BarraDef = ({colore,changeable}) => {
     
     <div className='flex justify-center items-center flex-col'>
     <div className='flex'>
-    <div className='flex justify-center mb-5 '><p className='bg-black shadow-lg shadow-white w-min rounded-full text-white' style={{width:'40px',height:'40px'}}>A</p></div>
+    <div className='flex justify-center mb-5 '><p className='bg-black shadow-lg  w-min rounded-full text-white' style={{width:'40px',height:'40px'}}>A</p></div>
 
     <div className=" h-9 rounded-md flex justify-around items-around  w-10/12 hexagon" style={{backgroundColor:colore,background:'rgb(2,0,36)',background:`linear-gradient(90deg, rgba(2,0,36,1) 0%, ${hexToRgba(changeable.colore)}`,marginLeft:'1rem',marginRight:'1rem'}} ref={myRef}>
    
 {elementi.map(({simbolo,testo,id})=>{
         return(
             <div key={testo} className='overflow-visible w-30'>
-                <div className='flex justify-center mb-5 '><div className='bg-black shadow-lg shadow-white w-min rounded-full text-white' style={{width:'40px',height:'40px'}}><p>{simbolo}</p></div></div>
+                <div className='flex justify-center mb-5 '><div className='bg-black shadow-lg  w-min rounded-full text-white' style={{width:'40px',height:'40px'}}><p>{simbolo}</p></div></div>
                 <div className='border border-black border-sm mx-2 p-2   h-60 '>
                 <h2 className='text-sm text-white rounded-md h-20 text-center flex justify-center items-center' style={{backgroundColor:changeable.colore}}><p>{testo}</p></h2>
                 <TextareaAutosize

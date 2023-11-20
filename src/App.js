@@ -110,7 +110,7 @@ function App() {
   const [sinistra,setSinistra] = useState(listaSinistra)
   const [destra,setDestra] = useState(listaDestra)
   const imageRef = useRef();
-
+  const [file, setFile] = useState();
   const [elBarra,setElBarra] = useState([
 
   ])
@@ -207,6 +207,11 @@ if (direzione==='sinistra') {
     setElementi(new_arr)
   }
 
+  function handleChange(e) {
+    console.log(e.target.files);
+    setFile(URL.createObjectURL(e.target.files[0]));
+}
+
 
   const changeable = {
     colore:colore_barra,
@@ -223,9 +228,14 @@ if (direzione==='sinistra') {
   }
 
   return (
-    <div className="App text-black App-header border border-black rounded-sm font-bold" >
+    <div className="App text-black App-header border border-black rounded-sm font-bold" ref={imageRef} >
+      
       <header className=" p-3  w-full mx-20 ">
-        <span className="flex gap-2">
+        <span className="flex gap-2 items-center">
+          <div>
+          {!file && <input className="text-sm" type="file" onChange={handleChange} />}
+      <img style={{width:'78px'}} src={file} />
+          </div>
           <select name="TIPO" id="tipo">
             <option>Sistema</option>
             <option> Schema Logico</option>
@@ -234,7 +244,7 @@ if (direzione==='sinistra') {
             <option>Metodo</option>
 
           </select>
-          <span className="flex gap-2 w-full"><p>:</p><input placeholder="TITOLO"  type="text" className="text-green-600 p-2 w-full"></input></span>
+          <span className="flex gap-2 w-full"><p>:</p><input placeholder="TITOLO"  type="text" className="p-2 w-full"></input></span>
         </span>
         <div className=" flex justify-center gap-10  my-3  " style={{height:'104px '}}>
 
@@ -320,7 +330,7 @@ if (direzione==='sinistra') {
 
       {/* <EditBarraEl changeable={changeable}/> */}
       {/* <Barra changeable={changeable} colore={colore} el={elementi} set={setElementi} /> */}
-      <div ref={imageRef}>
+      <div >
       <BarraDef changeable={changeable}/>
       </div>
       
