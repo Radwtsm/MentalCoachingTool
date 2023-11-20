@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import "./App.css";
 import { TextareaAutosize } from "@mui/base/TextareaAutosize";
 import html2canvas from "html2canvas";
+import EditBarraEl from "./components/EditBarraEl";
 
 // import { useScreenshot } from 'use-react-screenshot'
 // Import the functions you need from imthe SDKs you need
@@ -16,6 +17,7 @@ import ModalUnstyled from "./components/AdminModal";
 import { db } from "./components/settings/firebaseconfig";
 import { style } from "@mui/system";
 import CustomizedSteppers from "./components/Stepper";
+import BarraDef from "./components/BarraDef";
 
 let listaSinistra = []
 let listaDestra = []
@@ -108,6 +110,10 @@ function App() {
   const [sinistra,setSinistra] = useState(listaSinistra)
   const [destra,setDestra] = useState(listaDestra)
   const imageRef = useRef();
+
+  const [elBarra,setElBarra] = useState([
+
+  ])
 
   // console.log(el)
   // console.log('eccolooo', colore_barra)
@@ -212,11 +218,13 @@ if (direzione==='sinistra') {
     elementi:elementi,
     screen:exportAsImage,
     ref:imageRef,
+    elBarra,
+    setElBarra,
   }
 
   return (
-    <div className="App text-black App-header border border-black rounded-sm font-bold" ref={imageRef}>
-      <header className=" p-3 my-10 w-full mx-20 ">
+    <div className="App text-black App-header border border-black rounded-sm font-bold" >
+      <header className=" p-3  w-full mx-20 ">
         <span className="flex gap-2">
           <select name="TIPO" id="tipo">
             <option>Sistema</option>
@@ -310,8 +318,12 @@ if (direzione==='sinistra') {
         </div>
       </header>
 
-
-      <Barra changeable={changeable} colore={colore} el={elementi} set={setElementi} />
+      {/* <EditBarraEl changeable={changeable}/> */}
+      {/* <Barra changeable={changeable} colore={colore} el={elementi} set={setElementi} /> */}
+      <div ref={imageRef}>
+      <BarraDef changeable={changeable}/>
+      </div>
+      
       <button onClick={()=>exportAsImage(imageRef.current,'test')}>SAVE PICT</button>
 
       {/* <CustomizedSteppers changeable={changeable}/> */}

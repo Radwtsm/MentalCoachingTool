@@ -11,7 +11,7 @@ export default function ModalUnstyled({settings,changeable}) {
   const handleClose = () => setOpen(false);
 
   const password = 'Admin123'
-  const [unlocked,setUnlocked] = React.useState(true)
+  const [unlocked,setUnlocked] = React.useState(false)
   const [input,setInput] = React.useState('')
 
   function enterAdmin(input){
