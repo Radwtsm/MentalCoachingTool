@@ -255,7 +255,7 @@ if (direzione==='sinistra') {
             <option>Metodo</option>
 
           </select>
-          <div className="flex gap-2 w-full"><p>:</p><input style={{fontSize:31}} placeholder="TITOLO" maxLength={24}  type="text" className="p-2 w-full"></input></div>
+          <div className="flex gap-2 w-full"><p style={{marginTop:'11px'}}>:</p><input style={{fontSize:31}} placeholder="TITOLO" maxLength={24}  type="text" className="p-2 w-full"></input></div>
         </div>
         <div className=" flex justify-center gap-10  my-3  " style={{height:'104px '}}>
 
