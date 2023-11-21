@@ -250,7 +250,7 @@ if (direzione==='sinistra') {
 
           <TextareaAutosize
 
-            className="text-sm p-3 text-red-600 border border-black rounded-sm w-1/2 font-normal h-full"
+            className="text-sm p-3 text-red-600 border border-black rounded-sm w-1/2 font-normal h-full resize-none	"
             aria-label="empty textarea"
             placeholder="Descrizione"
             style={{height:'100%'}}
@@ -260,7 +260,7 @@ if (direzione==='sinistra') {
 
           <TextareaAutosize
 
-            className="text-sm h-full p-3 text-green-600 border border-black rounded-sm w-1/2 font-normal"
+            className="text-sm h-full p-3 text-green-600 border border-black rounded-sm w-1/2 font-normal resize-none	"
             style={{height:'100%'}}
             maxLength={233}
 
@@ -279,7 +279,7 @@ if (direzione==='sinistra') {
                   <TextareaAutosize
                     id={el}
                     // onChange={(e) => isNotEmpty(e.target)}
-                    className="text-sm w-full p-1 font-normal"
+                    className="text-sm w-full p-1 font-normal resize-none	"
                     style={{height:'127px'}}
                     aria-label="empty textarea"
                     placeholder="..."
@@ -300,7 +300,7 @@ if (direzione==='sinistra') {
                   <TextareaAutosize
                     id={el}
                     // onChange={(e) => isNotEmpty(e.target)}
-                    className="p-1 text-sm w-full font-normal"
+                    className="p-1 text-sm w-full font-normal resize-none	"
                     aria-label="empty textarea"
                     style={{height:'127px'}}
 
@@ -319,7 +319,7 @@ if (direzione==='sinistra') {
                     // onChange={(e) => isNotEmpty(e.target)}
                     className=" text-sm w-full font-normal
                     
-                     h-full p-3   rounded-sm  font-normal"
+                     h-full p-3   rounded-sm  font-normal resize-none	"
                     aria-label="empty textarea"
                     placeholder="..."
                     style={{height:'64px'}}
