@@ -3,6 +3,9 @@ import "./App.css";
 import { TextareaAutosize } from "@mui/base/TextareaAutosize";
 import html2canvas from "html2canvas";
 import EditBarraEl from "./components/EditBarraEl";
+// import { useToImage } from '@hcorta/react-to-image'
+// import { useToPng } from '@hugocxl/react-to-image'
+
 
 // import { useScreenshot } from 'use-react-screenshot'
 // Import the functions you need from imthe SDKs you need
@@ -111,9 +114,17 @@ function App() {
   const [destra,setDestra] = useState(listaDestra)
   const imageRef = useRef();
   const [file, setFile] = useState();
-  const [elBarra,setElBarra] = useState([
+  const [elBarra,setElBarra] = useState([])
+  // const { ref, isLoading, getSvg } = useToImage()
+  // const [{ isLoading }, convert, ref] = useToPng({
+  //   onSuccess: data => {
+  //     const img = new Image();
+  //     img.src = dataUrl;
+  //     document.body.appendChild(img);
+  //   }
+  // })
 
-  ])
+  
 
   // console.log(el)
   // console.log('eccolooo', colore_barra)
@@ -236,7 +247,7 @@ if (direzione==='sinistra') {
           {!file && <input className="text-sm" type="file" onChange={handleChange} />}
       <img style={{width:'78px'}} src={file} />
           </div>
-          <select name="TIPO" id="tipo">
+          <select style={{fontSize:31}} name="TIPO" id="tipo">
             <option>Sistema</option>
             <option> Schema Logico</option>
             <option>Protocollo</option>
@@ -244,7 +255,7 @@ if (direzione==='sinistra') {
             <option>Metodo</option>
 
           </select>
-          <div className="flex gap-2 w-full"><p>:</p><input placeholder="TITOLO" maxLength={24}  type="text" className="p-2 w-full"></input></div>
+          <div className="flex gap-2 w-full"><p>:</p><input style={{fontSize:31}} placeholder="TITOLO" maxLength={24}  type="text" className="p-2 w-full"></input></div>
         </div>
         <div className=" flex justify-center gap-10  my-3  " style={{height:'104px '}}>
 
@@ -253,16 +264,16 @@ if (direzione==='sinistra') {
             className="text-sm p-3 text-red-600 border border-black rounded-sm w-1/2 font-normal h-full resize-none	"
             aria-label="empty textarea"
             placeholder="Descrizione"
-            style={{height:'100%'}}
-            maxLength={233}
+            style={{height:'100%',fontSize:18}}
+            maxLength={150}
             
           />
 
           <TextareaAutosize
 
             className="text-sm h-full p-3 text-green-600 border border-black rounded-sm w-1/2 font-normal resize-none	"
-            style={{height:'100%'}}
-            maxLength={233}
+            style={{height:'100%',fontSize:18}}
+            maxLength={150}
 
             aria-label="empty textarea"
             placeholder="Descrizione"
@@ -275,12 +286,12 @@ if (direzione==='sinistra') {
             {sinistra.reverse().map((el) => {
               return (
                 <div className="text-sm w-full basis-1/2 " key={el}>
-                  <p className="text-left">{el}</p>
+                  <p className="text-left" style={{fontSize:16}}>{el}</p>
                   <TextareaAutosize
                     id={el}
                     // onChange={(e) => isNotEmpty(e.target)}
                     className="text-sm w-full p-1 font-normal resize-none	"
-                    style={{height:'127px'}}
+                    style={{height:'127px',fontSize:12}}
                     aria-label="empty textarea"
                     placeholder="..."
                     maxLength={135}
@@ -295,14 +306,14 @@ if (direzione==='sinistra') {
             {destra.reverse().map((el) => {
               return (
                 <div className="text-sm w-full basis-1/2   " key={el}>
-                  <p className="text-left">{el}</p>
+                  <p className="text-left" style={{fontSize:16}}>{el}</p>
 
                   <TextareaAutosize
                     id={el}
                     // onChange={(e) => isNotEmpty(e.target)}
                     className="p-1 text-sm w-full font-normal resize-none	"
                     aria-label="empty textarea"
-                    style={{height:'127px'}}
+                    style={{height:'127px',fontSize:12}}
 
                     placeholder="..."
                     maxLength={135}
@@ -313,7 +324,7 @@ if (direzione==='sinistra') {
           </div>
         </div>
         <div style={{height:'93px'}}>
-          <p className="text-left text-sm text-green-600">Trasformazione che cerca</p>
+          <p className="text-left text-sm text-green-600" style={{fontSize:16}}>Trasformazione che cerca</p>
           <TextareaAutosize
                     id={el}
                     // onChange={(e) => isNotEmpty(e.target)}
@@ -322,7 +333,7 @@ if (direzione==='sinistra') {
                      h-full p-3   rounded-sm  font-normal resize-none	"
                     aria-label="empty textarea"
                     placeholder="..."
-                    style={{height:'64px'}}
+                    style={{height:'64px',fontSize:12}}
                     maxLength={228}
                   />
         </div>
@@ -335,6 +346,8 @@ if (direzione==='sinistra') {
       </div>
       
       <button onClick={()=>exportAsImage(imageRef.current,'test')}>SAVE PICT</button>
+      {/* <button onClick={()=>getSvg()}>SAVE PICT html2react</button> */}
+
 
       {/* <CustomizedSteppers changeable={changeable}/> */}
       <ModalUnstyled changeable={changeable} />
