@@ -231,7 +231,7 @@ if (direzione==='sinistra') {
     <div className="App text-black App-header border border-black rounded-sm font-bold mt-3" ref={imageRef} >
       
       <header className=" p-3  w-full mx-20 ">
-        <span className="flex gap-2 items-center">
+        <div className="flex gap-2 items-center">
           <div>
           {!file && <input className="text-sm" type="file" onChange={handleChange} />}
       <img style={{width:'78px'}} src={file} />
@@ -244,8 +244,8 @@ if (direzione==='sinistra') {
             <option>Metodo</option>
 
           </select>
-          <span className="flex gap-2 w-full"><p>:</p><input placeholder="TITOLO"  type="text" className="p-2 w-full pt-6"></input></span>
-        </span>
+          <div className="flex gap-2 w-full"><p>:</p><input placeholder="TITOLO" maxLength={24}  type="text" className="p-2 w-full"></input></div>
+        </div>
         <div className=" flex justify-center gap-10  my-3  " style={{height:'104px '}}>
 
           <TextareaAutosize
@@ -254,7 +254,7 @@ if (direzione==='sinistra') {
             aria-label="empty textarea"
             placeholder="Descrizione"
             style={{height:'100%'}}
-            maxLength={280}
+            maxLength={233}
             
           />
 
@@ -262,7 +262,7 @@ if (direzione==='sinistra') {
 
             className="text-sm h-full p-3 text-green-600 border border-black rounded-sm w-1/2 font-normal"
             style={{height:'100%'}}
-            maxLength={280}
+            maxLength={233}
 
             aria-label="empty textarea"
             placeholder="Descrizione"
@@ -280,10 +280,10 @@ if (direzione==='sinistra') {
                     id={el}
                     // onChange={(e) => isNotEmpty(e.target)}
                     className="text-sm w-full p-1 font-normal"
-                    style={{height:'250px'}}
+                    style={{height:'127px'}}
                     aria-label="empty textarea"
                     placeholder="..."
-                    maxLength={400}
+                    maxLength={174}
                   />
 
                 </div>
@@ -302,10 +302,10 @@ if (direzione==='sinistra') {
                     // onChange={(e) => isNotEmpty(e.target)}
                     className="p-1 text-sm w-full font-normal"
                     aria-label="empty textarea"
-                    style={{height:'250px'}}
+                    style={{height:'127px'}}
 
                     placeholder="..."
-                    maxLength={400}
+                    maxLength={174}
                   />
                 </div>
               );
@@ -322,8 +322,8 @@ if (direzione==='sinistra') {
                      h-full p-3   rounded-sm  font-normal"
                     aria-label="empty textarea"
                     placeholder="..."
-                    style={{height:'100%'}}
-                    maxLength={481}
+                    style={{height:'64px'}}
+                    maxLength={228}
                   />
         </div>
       </header>
