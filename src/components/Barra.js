@@ -95,7 +95,7 @@ function hexToRgba(hexColor) {
                 <TextareaAutosize
                     id={testo}
                     // onChange={(e) => isNotEmpty(e.target)}
-                    className="text-sm w-full font-medium"
+                    className="text-sm w-full font-medium resize-none"
                     aria-label="empty textarea"
                     placeholder="..."
                     maxLength={142}

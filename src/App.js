@@ -283,7 +283,7 @@ if (direzione==='sinistra') {
                     style={{height:'127px'}}
                     aria-label="empty textarea"
                     placeholder="..."
-                    maxLength={174}
+                    maxLength={135}
                   />
 
                 </div>
@@ -305,7 +305,7 @@ if (direzione==='sinistra') {
                     style={{height:'127px'}}
 
                     placeholder="..."
-                    maxLength={174}
+                    maxLength={135}
                   />
                 </div>
               );
