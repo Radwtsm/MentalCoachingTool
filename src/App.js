@@ -21,6 +21,7 @@ import { db } from "./components/settings/firebaseconfig";
 import { style } from "@mui/system";
 import CustomizedSteppers from "./components/Stepper";
 import BarraDef from "./components/BarraDef";
+import userEvent from "@testing-library/user-event";
 
 let listaSinistra = []
 let listaDestra = []
@@ -80,17 +81,47 @@ const docSnap = await getDoc(docRef);
 
 const colore_barra = docSnap.data().colore
 
-const exportAsImage = async (el, imageFileName,) => {
-  const style = document.createElement('style');
-  document.head.appendChild(style);
-  style.sheet?.insertRule('body > div:last-child img { display: inline-block; }');
+
+  
 
 
+function App() {
 
-  const canvas = await html2canvas(el);
-  const image = canvas.toDataURL("image/png", 1.0);
-  downloadImage(image, imageFileName);
-  };const downloadImage = (blob, fileName) => {
+  const [elementi, setElementi] = useState(el)
+  const [colore,setColore] = useState(colore_barra)
+  const [sinistra,setSinistra] = useState(listaSinistra)
+  const [destra,setDestra] = useState(listaDestra)
+  const imageRef = useRef();
+  const [file, setFile] = useState();
+  const [elBarra,setElBarra] = useState([])
+  
+  const editRef = useRef()
+  const checkRef = useRef()
+  const adminRef =useRef()
+  const saveRef =useRef()
+
+
+  const exportAsImage = async (el, imageFileName,) => {
+    checkRef.current.classList.add('invisible')
+    editRef.current.classList.add('invisible')
+    adminRef.current.classList.add('invisible')  
+    saveRef.current.classList.add('invisible')     
+    const style = document.createElement('style');
+    document.head.appendChild(style);
+    style.sheet?.insertRule('body > div:last-child img { display: inline-block; }');
+  
+  
+  
+    const canvas = await html2canvas(el);
+    const image = canvas.toDataURL("image/png", 1.0);
+    
+
+
+    downloadImage(image, imageFileName);
+    };
+
+    const downloadImage = (blob, fileName) => {
+     
   const fakeLink = window.document.createElement("a");
   fakeLink.style = "display:none;";
   fakeLink.download = fileName;
@@ -105,16 +136,6 @@ const exportAsImage = async (el, imageFileName,) => {
   // style.remove()
   };
 
-
-function App() {
-
-  const [elementi, setElementi] = useState(el)
-  const [colore,setColore] = useState(colore_barra)
-  const [sinistra,setSinistra] = useState(listaSinistra)
-  const [destra,setDestra] = useState(listaDestra)
-  const imageRef = useRef();
-  const [file, setFile] = useState();
-  const [elBarra,setElBarra] = useState([])
   // const { ref, isLoading, getSvg } = useToImage()
   // const [{ isLoading }, convert, ref] = useToPng({
   //   onSuccess: data => {
@@ -342,15 +363,15 @@ if (direzione==='sinistra') {
       {/* <EditBarraEl changeable={changeable}/> */}
       {/* <Barra changeable={changeable} colore={colore} el={elementi} set={setElementi} /> */}
       <div >
-      <BarraDef changeable={changeable}/>
+      <BarraDef checkRef={checkRef} editRef={editRef} changeable={changeable}/>
       </div>
       
-      <button onClick={()=>exportAsImage(imageRef.current,'test')}>SAVE PICT</button>
+      <button ref={saveRef} onClick={()=>exportAsImage(imageRef.current,'test')}>SAVE PICT</button>
       {/* <button onClick={()=>getSvg()}>SAVE PICT html2react</button> */}
 
 
       {/* <CustomizedSteppers changeable={changeable}/> */}
-      <ModalUnstyled changeable={changeable} />
+      <ModalUnstyled adminRef={adminRef} changeable={changeable} />
     </div>
   );
 }

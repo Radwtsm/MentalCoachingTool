@@ -4,7 +4,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { Button } from '@mui/material';
 
 
-const BarraDef = ({colore,changeable}) => {
+const BarraDef = ({colore,changeable,editRef,checkRef}) => {
     const [elementi,setElementi] = useState([{
         id:1,
         testo:'Funzioni e regole dei soldi',
@@ -154,7 +154,7 @@ const BarraDef = ({colore,changeable}) => {
         </div>)}
 
             <div className=' my-12'>
-            <Button onClick={()=>toggleEdit()} className='' variant="outlined">Edit</Button>
+            <Button ref={editRef} onClick={()=>toggleEdit()} className='' variant="outlined">Edit</Button>
 
             </div>
     
@@ -189,7 +189,7 @@ const BarraDef = ({colore,changeable}) => {
 
     </div>
 
-    <button className='mt-80 text-green-500' onClick={()=>check()}>check</button>
+    <button ref={checkRef} className='mt-80 text-green-500' onClick={()=>check()}>check</button>
 </div>
     </div>
     

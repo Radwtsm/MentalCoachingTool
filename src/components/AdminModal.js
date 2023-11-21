@@ -5,7 +5,7 @@ import { styled, Box } from '@mui/system';
 import { Modal as BaseModal } from '@mui/base/Modal';
 import Settings from './settings/Settings';
 
-export default function ModalUnstyled({settings,changeable}) {
+export default function ModalUnstyled({settings,changeable,adminRef}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -22,7 +22,7 @@ export default function ModalUnstyled({settings,changeable}) {
   }
   return (
     <div className='w-full p-10'>
-      <TriggerButton className='' type="button" onClick={handleOpen}>
+      <TriggerButton ref={adminRef} className='' type="button" onClick={handleOpen}>
         Admin
       </TriggerButton>
       <Modal
