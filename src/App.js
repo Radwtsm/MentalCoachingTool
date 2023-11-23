@@ -2,26 +2,13 @@ import { useRef, useState } from "react";
 import "./App.css";
 import { TextareaAutosize } from "@mui/base/TextareaAutosize";
 import html2canvas from "html2canvas";
-import EditBarraEl from "./components/EditBarraEl";
-// import { useToImage } from '@hcorta/react-to-image'
-// import { useToPng } from '@hugocxl/react-to-image'
-
-
-// import { useScreenshot } from 'use-react-screenshot'
-// Import the functions you need from imthe SDKs you need
-
-
-//firebase
-// Import the functions you need from the SDKs you need
 
 import { collection, getDocs, getDoc, doc,setDoc,deleteDoc } from "firebase/firestore";
-import Barra from "./components/Barra";
+
 import ModalUnstyled from "./components/AdminModal";
 import { db } from "./components/settings/firebaseconfig";
-import { style } from "@mui/system";
-import CustomizedSteppers from "./components/Stepper";
 import BarraDef from "./components/BarraDef";
-import userEvent from "@testing-library/user-event";
+
 
 let listaSinistra = []
 let listaDestra = []
@@ -82,7 +69,7 @@ const docSnap = await getDoc(docRef);
 const colore_barra = docSnap.data().colore
 
 
-  
+
 
 
 function App() {
@@ -135,66 +122,7 @@ function App() {
   fakeLink.remove();
   // style.remove()
   };
-
-  // const { ref, isLoading, getSvg } = useToImage()
-  // const [{ isLoading }, convert, ref] = useToPng({
-  //   onSuccess: data => {
-  //     const img = new Image();
-  //     img.src = dataUrl;
-  //     document.body.appendChild(img);
-  //   }
-  // })
-
-  
-
-  // console.log(el)
-  // console.log('eccolooo', colore_barra)
-  // const lista_elementi1 = [
-  //   "paure",
-  //   "frustrazioni",
-  //   "ansie",
-  //   "esigenze/punti di dolore",
-  //   "dubbi/obiezioni",
-  //   "emozioni che prova ora",
-  // ];
-
-  // opzioni della tabella di destra, può esser modificata per cambiare i campi disponibili
-  // const lista_elementi2 = [
-  //   "desideri",
-  //   "ambizioni",
-  //   "perchè",
-  //   "benefici che desidera",
-  //   "risoluzione dubbi/obiezioni",
-  //   "emozioni che vuole provare",
-  // ];
-
-  // const [selezionati, setSelezionati] = useState([]);
-
-  // const isNotEmpty = (element) => {
-  //   console.log(element.id);
-  //   console.log(element.value.length);
-
-  //   //campo compilato
-  //   if (element.value.length > 0) {
-  //     //se NON è gia presente nei selezionati
-  //     if (!selezionati.includes(element.id)) {
-  //       // setSelezionati([...selezionati,element.value.id])
-  //       let new_arr = selezionati;
-  //       new_arr.push(element.id);
-  //       setSelezionati(new_arr);
-  //       console.log("aggiunto", element.id);
-  //     }
-  //   } else if (element.value.length === 0) {
-  //     // let new_array = selezionati.filter((el)=> el !== element.value)
-  //     let new_arr = selezionati.filter((el) => el !== element.id);
-  //     setSelezionati(new_arr);
-
-  //     console.log("rimosso");
-  //     // setSelezionati(new_array)
-  //   }
-  // };
-
-  async function addLista(direzione,testo){
+    async function addLista(direzione,testo){
     const lista_dir = direzione === 'sinistra' ? 'lista_sinistra' : 'lista_destra'
     // Add a new document in collection "cities"
 await setDoc(doc(db, lista_dir, testo), {
@@ -214,7 +142,6 @@ if (direzione==='sinistra') {
 }
 
   }
-
   async function removeLista(direzione,testo) {
     const lista = direzione === 'sinistra' ? 'lista_sinistra' : 'lista_destra'
     await deleteDoc(doc(db, lista, testo));
@@ -231,14 +158,6 @@ if (direzione==='sinistra') {
       setDestra(new_arr)
     }
   }
-
-  async function getListaElementi(){
-    let new_arr = []
-    let queryElementi = await getDocs(collection(db, "lista_elementi"));
-    queryElementi.forEach((doc) => new_arr.push(doc.data()))
-    setElementi(new_arr)
-  }
-
   function handleChange(e) {
     console.log(e.target.files);
     setFile(URL.createObjectURL(e.target.files[0]));
@@ -266,7 +185,7 @@ if (direzione==='sinistra') {
         <div className="flex gap-2 items-center">
           <div>
           {!file && <input className="text-sm" type="file" onChange={handleChange} />}
-      <img style={{width:'78px'}} src={file} />
+          <img style={{width:'78px'}} src={file} alt={'img loaded by user'}/>
           </div>
           <select style={{fontSize:31}} name="TIPO" id="tipo">
             <option>Sistema</option>
@@ -331,7 +250,6 @@ if (direzione==='sinistra') {
 
                   <TextareaAutosize
                     id={el}
-                    // onChange={(e) => isNotEmpty(e.target)}
                     className="p-1 text-sm w-full font-normal resize-none	"
                     aria-label="empty textarea"
                     style={{height:'127px',fontSize:12}}
@@ -349,9 +267,7 @@ if (direzione==='sinistra') {
           <TextareaAutosize
                     id={el}
                     // onChange={(e) => isNotEmpty(e.target)}
-                    className=" text-sm w-full font-normal
-                    
-                     h-full p-3   rounded-sm  font-normal resize-none	"
+                    className=" text-sm w-full h-full p-3 rounded-sm  font-normal resize-none	"
                     aria-label="empty textarea"
                     placeholder="..."
                     style={{height:'64px',fontSize:12}}
@@ -360,17 +276,12 @@ if (direzione==='sinistra') {
         </div>
       </header>
 
-      {/* <EditBarraEl changeable={changeable}/> */}
-      {/* <Barra changeable={changeable} colore={colore} el={elementi} set={setElementi} /> */}
-      <div >
+      <div className="w-full">
       <BarraDef checkRef={checkRef} editRef={editRef} changeable={changeable}/>
       </div>
       
       <button ref={saveRef} onClick={()=>exportAsImage(imageRef.current,'test')}>SAVE PICT</button>
-      {/* <button onClick={()=>getSvg()}>SAVE PICT html2react</button> */}
 
-
-      {/* <CustomizedSteppers changeable={changeable}/> */}
       <ModalUnstyled adminRef={adminRef} changeable={changeable} />
     </div>
   );

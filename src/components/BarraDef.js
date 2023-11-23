@@ -159,7 +159,7 @@ const BarraDef = ({colore,changeable,editRef,checkRef}) => {
             </div>
     
     <div className='flex justify-center items-center flex-col'>
-    <div className='flex'>
+    <div className='flex w-full justify-center'>
     <div className='flex justify-center mb-5 '><p className='bg-black shadow-lg  w-min rounded-full text-white' style={{width:'40px',height:'40px'}}>A</p></div>
 
     <div className=" h-9 rounded-md flex justify-around items-around  w-10/12 hexagon font-black" style={{backgroundColor:colore,background:'rgb(2,0,36)',background:`linear-gradient(90deg, rgba(2,0,36,1) 0%, ${hexToRgba(changeable.colore)}`,marginLeft:'1rem',marginRight:'1rem'}} ref={myRef}>
