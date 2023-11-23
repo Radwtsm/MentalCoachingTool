@@ -263,7 +263,7 @@ if (direzione==='sinistra') {
           </div>
         </div>
         <div style={{height:'93px'}}>
-          <p className="text-left text-sm text-green-600" style={{fontSize:16}}>Trasformazione che cercaaa</p>
+          <p className="text-left text-sm text-green-600" style={{fontSize:16}}>Trasformazione che cerca</p>
           <TextareaAutosize
                     id={el}
                     // onChange={(e) => isNotEmpty(e.target)}
