@@ -126,7 +126,7 @@ const BarraDef = ({colore,changeable,editRef,checkRef}) => {
     }
 
   return (
-    <div className=''>
+    <div className='w-full'>
 
 
         {isEditable && (<div className='border'>
@@ -162,23 +162,24 @@ const BarraDef = ({colore,changeable,editRef,checkRef}) => {
     <div className='flex w-full justify-center'>
     <div className='flex justify-center mb-5 '><p className='bg-black shadow-lg  w-min rounded-full text-white' style={{width:'40px',height:'40px'}}>A</p></div>
 
-    <div className=" h-9 rounded-md flex justify-around items-around  w-10/12 hexagon font-black" style={{backgroundColor:colore,background:'rgb(2,0,36)',background:`linear-gradient(90deg, rgba(2,0,36,1) 0%, ${hexToRgba(changeable.colore)}`,marginLeft:'1rem',marginRight:'1rem'}} ref={myRef}>
+    <div className=" h-9 rounded-md flex justify-around items-around  w-full hexagon font-black" style={{backgroundColor:colore,background:'rgb(2,0,36)',background:`linear-gradient(90deg, rgba(2,0,36,1) 0%, ${hexToRgba(changeable.colore)}`,marginLeft:'1rem',marginRight:'1rem'}} ref={myRef}>
    
 {elementi.map(({simbolo,testo,id})=>{
         return(
             <div key={testo} className='overflow-visible w-30'>
                 <div className='flex justify-center mb-5 '><div className='bg-black shadow-lg  w-min rounded-full text-white' style={{width:'40px',height:'40px'}}><p>{simbolo}</p></div></div>
-                <div className='border border-black border-sm mx-2    h-60 '>
-                <h2 className='text-sm text-white rounded-md h-20 text-center flex justify-center items-center  mx-2 mt-2 font-medium' style={{backgroundColor:changeable.colore,width:'110px',fontSize:14}}><p className=''>{testo}</p></h2>
+                <div style={{width:'160px',height:'300px'}} className='border border-black border-sm mx-2    h-60 '>
+                <h2 className='text-sm text-white rounded-md h-20 text-center flex justify-center items-center  mx-2 mt-2 font-medium' style={{backgroundColor:changeable.colore,fontSize:14}}><p className=''>{testo}</p></h2>
                 <TextareaAutosize
                     id={testo}
+                    
                     // onChange={(e) => isNotEmpty(e.target)}
                     className="text-sm w-full font-medium resize-none "
                     aria-label="empty textarea"
                     placeholder="..."
-                    maxLength={88}
+                    maxLength={100}
                     onChange={(e)=>onTextChange(e)}
-                    style={{height:'140px',width:'100px'}}
+                    style={{height:'200px',width:'150px'}}
                   />
                   </div>
             </div>
