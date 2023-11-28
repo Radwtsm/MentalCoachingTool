@@ -205,7 +205,7 @@ if (direzione==='sinistra') {
             aria-label="empty textarea"
             placeholder="Descrizione"
             style={{height:'100%',fontSize:18}}
-            maxLength={150}
+            maxLength={300}
             
           />
 
