@@ -120,6 +120,11 @@ function App() {
   document.body.removeChild(fakeLink);
   
   fakeLink.remove();
+
+  checkRef.current.classList.remove('invisible')
+    editRef.current.classList.remove('invisible')
+    adminRef.current.classList.remove('invisible')  
+    saveRef.current.classList.remove('invisible')     
   // style.remove()
   };
     async function addLista(direzione,testo){
@@ -195,29 +200,40 @@ if (direzione==='sinistra') {
             <option>Metodo</option>
 
           </select>
-          <div className="flex gap-2 w-full"><p style={{marginTop:'11px'}}>:</p><input style={{fontSize:31}} placeholder="TITOLO" maxLength={24}  type="text" className="p-2 w-full"></input></div>
+          <div className="flex gap-2 w-full"><p style={{marginTop:'11px'}}>:</p><div contentEditable onKeyDown={(e)=>{
+              if (e.currentTarget.innerHTML.length > 24 && e.key !== 'Backspace'){
+                e.preventDefault()
+              }
+            }}   style={{fontSize:31}} placeholder="TITOLO" maxLength={24}  type="text" className="p-2 w-full text-left"></div></div>
         </div>
-        <div className=" flex justify-center gap-10  my-3  " style={{height:'104px '}}>
+        <div className=" flex justify-center gap-10  my-3  " style={{}}>
 
-          <TextareaAutosize
-
-            className="text-sm p-3 text-red-600 border border-black rounded-sm w-1/2 font-normal h-full resize-none	"
+        <div
+            contentEditable
+            className="text-sm text-left p-3 text-green-600 border border-black rounded-sm font-normal h-full resize-none	"
             aria-label="empty textarea"
             placeholder="Descrizione"
-            style={{height:'100%',fontSize:18}}
-            maxLength={300}
-            
+            style={{minHeight:'104px',height:'auto',fontSize:18,width:'50%'}}
+            // maxLength={300}
+            onKeyDown={(e)=>{
+              if (e.currentTarget.innerHTML.length > 160 && e.key !== 'Backspace'){
+                e.preventDefault()
+              }
+            }}  
           />
 
-          <TextareaAutosize
-
-            className="text-sm h-full p-3 text-green-600 border border-black rounded-sm w-1/2 font-normal resize-none	"
-            style={{height:'100%',fontSize:18}}
-            maxLength={150}
-
+<div
+            contentEditable
+            className="text-sm p-3 text-left text-green-600 border border-black rounded-sm font-normal h-full resize-none	"
             aria-label="empty textarea"
             placeholder="Descrizione"
-
+            style={{height:'auto',fontSize:18,width:'50%'}}
+            // maxLength={300}
+            onKeyDown={(e)=>{
+              if (e.currentTarget.innerHTML.length > 160 && e.key !== 'Backspace'){
+                e.preventDefault()
+              }
+            }}  
           />
         </div>
         <div className="flex justify-center gap-10  my-3  ">
@@ -227,14 +243,20 @@ if (direzione==='sinistra') {
               return (
                 <div className="text-sm w-full basis-1/2 " key={el}>
                   <p className="text-left" style={{fontSize:16}}>{el}</p>
-                  <TextareaAutosize
+                  <div
+                    contentEditable
                     id={el}
                     // onChange={(e) => isNotEmpty(e.target)}
-                    className="text-sm w-full p-1 font-normal resize-none	"
-                    style={{height:'127px',fontSize:12}}
+                    className="text-left text-black text-sm w-full p-1 font-normal resize-none	"
+                    style={{height:'127px',fontSize:12,width:'300px'}}
                     aria-label="empty textarea"
                     placeholder="..."
                     maxLength={261}
+                    onKeyDown={(e)=>{
+                      if (e.currentTarget.innerHTML.length > 261 && e.key !== 'Backspace'){
+                        e.preventDefault()
+                      }
+                    }}  
                   />
 
                 </div>
@@ -248,14 +270,20 @@ if (direzione==='sinistra') {
                 <div className="text-sm w-full basis-1/2   " key={el}>
                   <p className="text-left" style={{fontSize:16}}>{el}</p>
 
-                  <TextareaAutosize
+                  <div
+                    contentEditable
                     id={el}
-                    className="p-1 text-sm w-full font-normal resize-none	"
+                    // onChange={(e) => isNotEmpty(e.target)}
+                    className="text-left text-black text-sm w-full p-1 font-normal resize-none	"
+                    style={{height:'127px',fontSize:12,width:'300px'}}
                     aria-label="empty textarea"
-                    style={{height:'127px',fontSize:12}}
-
                     placeholder="..."
                     maxLength={261}
+                    onKeyDown={(e)=>{
+                      if (e.currentTarget.innerHTML.length > 261 && e.key !== 'Backspace'){
+                        e.preventDefault()
+                      }
+                    }}  
                   />
                 </div>
               );
@@ -264,14 +292,20 @@ if (direzione==='sinistra') {
         </div>
         <div style={{height:'93px'}}>
           <p className="text-left text-sm text-green-600" style={{fontSize:16}}>Trasformazione che cerca</p>
-          <TextareaAutosize
+          <div
+          contentEditable
                     id={el}
                     // onChange={(e) => isNotEmpty(e.target)}
-                    className=" text-sm w-full h-full p-3 rounded-sm  font-normal resize-none	"
+                    className="text-left text-sm w-full h-full p-3 rounded-sm  font-normal resize-none	"
                     aria-label="empty textarea"
                     placeholder="..."
                     style={{height:'64px',fontSize:12}}
                     maxLength={228}
+                    onKeyDown={(e)=>{
+                      if (e.currentTarget.innerHTML.length > 400 && e.key !== 'Backspace'){
+                        e.preventDefault()
+                      }
+                    }}  
                   />
         </div>
       </header>

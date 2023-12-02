@@ -37,6 +37,8 @@ const BarraDef = ({colore,changeable,editRef,checkRef}) => {
     const [next,setNext] = useState([])
     const [isEditable,setIsEditable] = useState(false)
 
+    const [maxSize,setMaxSize] = useState(200)
+
     const myRef = useRef();
 
     function onTestoChange(e){
@@ -48,7 +50,7 @@ const BarraDef = ({colore,changeable,editRef,checkRef}) => {
     }
 
     function onTextChange(e) {
-        let length =  e.target.value.length
+        let length =  e.target.innerText.length
 
         if (length > 0) {
             console.log('aggiunto',e.target.id)
@@ -168,18 +170,25 @@ const BarraDef = ({colore,changeable,editRef,checkRef}) => {
         return(
             <div key={testo} className='overflow-visible w-30'>
                 <div className='flex justify-center mb-5 '><div className='bg-black shadow-lg  w-min rounded-full text-white' style={{width:'40px',height:'40px'}}><p>{simbolo}</p></div></div>
-                <div style={{width:'160px',height:'300px'}} className='border border-black border-sm mx-2    h-60 '>
+                <div style={{width:'160px',height:'fit-content'}} className='border border-black border-sm mx-2    h-60 '>
                 <h2 className='text-sm text-white rounded-md h-20 text-center flex justify-center items-center  mx-2 mt-2 font-medium' style={{backgroundColor:changeable.colore,fontSize:14}}><p className=''>{testo}</p></h2>
-                <TextareaAutosize
+                <div
+                    contentEditable
                     id={testo}
                     
                     // onChange={(e) => isNotEmpty(e.target)}
-                    className="text-sm w-full font-medium resize-none "
+                    className="text-left text-sm w-full font-medium resize-none "
                     aria-label="empty textarea"
                     placeholder="..."
                     maxLength={100}
-                    onChange={(e)=>onTextChange(e)}
-                    style={{height:'200px',width:'150px'}}
+                    onKeyDown={(e)=>{
+                        onTextChange(e)
+                        console.log(e.currentTarget.offsetHeight)
+                        if (e.currentTarget.offsetHeight > maxSize){
+                            setMaxSize(e.currentTarget.offsetHeight)
+                        }
+                    }}
+                    style={{width:'150px',minHeight:`${maxSize}px`}}
                   />
                   </div>
             </div>
