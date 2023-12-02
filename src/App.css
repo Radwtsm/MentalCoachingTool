@@ -1,9 +1,11 @@
 .App {
   text-align: center;
+
 }
 
 body {
   color: black;
+  margin-bottom: 10rem;
   /* line-height: 0.5 !important; */
 }
 

@@ -99,7 +99,7 @@ function App() {
   
   
   
-    const canvas = await html2canvas(el);
+    const canvas = await html2canvas(el,{scrollY: window.scrollY});
     const image = canvas.toDataURL("image/png", 1.0);
     
 
@@ -170,7 +170,7 @@ if (direzione==='sinistra') {
 
 
   const changeable = {
-    colore:colore_barra,
+    colore:colore,
     setColore:setColore,
     sinistra:sinistra,
     destra:destra,
@@ -224,7 +224,7 @@ if (direzione==='sinistra') {
 
 <div
             contentEditable
-            className="text-sm p-3 text-left text-green-600 border border-black rounded-sm font-normal h-full resize-none	"
+            className="text-sm p-3 text-left text-red-600 border border-black rounded-sm font-normal h-full resize-none	"
             aria-label="empty textarea"
             placeholder="Descrizione"
             style={{height:'auto',fontSize:18,width:'50%'}}
@@ -314,7 +314,7 @@ if (direzione==='sinistra') {
       <BarraDef checkRef={checkRef} editRef={editRef} changeable={changeable}/>
       </div>
       
-      <button ref={saveRef} onClick={()=>exportAsImage(imageRef.current,'test')}>SAVE PICT</button>
+      <button className="" ref={saveRef} onClick={()=>exportAsImage(imageRef.current,'test')}>SAVE PICT</button>
 
       <ModalUnstyled adminRef={adminRef} changeable={changeable} />
     </div>

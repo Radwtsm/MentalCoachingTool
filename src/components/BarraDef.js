@@ -164,7 +164,7 @@ const BarraDef = ({colore,changeable,editRef,checkRef}) => {
     <div className='flex w-full justify-center'>
     <div className='flex justify-center mb-5 '><p className='bg-black shadow-lg  w-min rounded-full text-white' style={{width:'40px',height:'40px'}}>A</p></div>
 
-    <div className=" h-9 rounded-md flex justify-around items-around  w-full hexagon font-black" style={{backgroundColor:colore,background:'rgb(2,0,36)',background:`linear-gradient(90deg, rgba(2,0,36,1) 0%, ${hexToRgba(changeable.colore)}`,marginLeft:'1rem',marginRight:'1rem'}} ref={myRef}>
+    <div className=" h-9 rounded-md flex justify-around items-around  w-full hexagon font-black mb-44" style={{backgroundColor:colore,background:'rgb(2,0,36)',background:`linear-gradient(90deg, rgba(2,0,36,1) 0%, ${hexToRgba(changeable.colore)}`,marginLeft:'1rem',marginRight:'1rem'}} ref={myRef}>
    
 {elementi.map(({simbolo,testo,id})=>{
         return(
@@ -177,7 +177,7 @@ const BarraDef = ({colore,changeable,editRef,checkRef}) => {
                     id={testo}
                     
                     // onChange={(e) => isNotEmpty(e.target)}
-                    className="text-left text-sm w-full font-medium resize-none "
+                    className="text-left text-sm w-full font-medium resize-none p-2"
                     aria-label="empty textarea"
                     placeholder="..."
                     maxLength={100}
@@ -188,7 +188,7 @@ const BarraDef = ({colore,changeable,editRef,checkRef}) => {
                             setMaxSize(e.currentTarget.offsetHeight)
                         }
                     }}
-                    style={{width:'150px',minHeight:`${maxSize}px`}}
+                    style={{minHeight:`${maxSize}px`}}
                   />
                   </div>
             </div>
