@@ -37,7 +37,7 @@ const BarraDef = ({colore,changeable,editRef,checkRef}) => {
     const [next,setNext] = useState([])
     const [isEditable,setIsEditable] = useState(false)
 
-    const [maxSize,setMaxSize] = useState(200)
+    const [maxSize,setMaxSize] = useState(10)
 
     const myRef = useRef();
 
@@ -53,17 +53,17 @@ const BarraDef = ({colore,changeable,editRef,checkRef}) => {
         let length =  e.target.innerText.length
 
         if (length > 0) {
-            console.log('aggiunto',e.target.id)
+            // console.log('aggiunto',e.target.id)
             if (!next.includes(e.target.id)) {
                 setNext([...next,e.target.id])
             }
             
         } else if (length === 0) {
-            console.log('rimosso',e.target.id)
+            // console.log('rimosso',e.target.id)
             let new_arr = next.filter((el)=> el !== e.target.id)
             setNext(new_arr)
         }
-        console.log(next)
+        // console.log(next)
     }
 
     function check() {
@@ -127,6 +127,80 @@ const BarraDef = ({colore,changeable,editRef,checkRef}) => {
         setIsEditable(!isEditable)
     }
 
+    const adjustSize = ()=>{
+        let compare = []
+        let max = 0;
+        let itemmax;
+        
+        for (let item of myRef.current.children) {
+            item.children[1].children[1].style.minHeight = 'fit-content'
+            // console.log(item.children[1].children[1].offsetHeight)
+            // console.log(item.children[1].children[1].children[0].offsetHeight)
+            // if (item.children[1].children[1].children[0].offsetHeight > max) {
+                compare.push(item.children[1].children[1].children[0].offsetHeight)
+                itemmax = (Math.max(...compare))
+                // if (item.children[1].children[1].children[0].offsetHeight > max && item.children[1].children[1].children[0].offsetHeight !== max ){
+                //     itemmax = item.children[1].children[1].children[0].parentNode.offsetHeight
+                // }
+            // }
+            // compare.push(item.children[1].children[1].offsetHeight)
+            // console.log(`item: ${item} heightcontentedit: ${item.children[1].children[1].children[0].offsetHeight}
+            // height container : ${item.children[1].children[1].offsetHeight}
+            // `)
+            // item.style.minWidth = '0px'
+            // console.log(item.children[1].children[1].children[0]) // contenteditable
+            // console.log(item.children[1].children[1]) // container
+          
+                console.log(compare)
+
+        }
+        
+    console.log('item with biggest container',itemmax)
+    for (let item of myRef.current.children) {
+        // console.log('item container height',item.children[1].children[1].offsetHeight)
+        
+        item.children[1].children[1].style.minHeight = `${itemmax}px`
+        console.log(item.children[1].children[1].style.minHeight)
+        // console.log()
+    }
+}
+
+    function maxSizeRow(){
+        // console.log(myRef.current.children.map((children)=>{
+        //     return children.offsetHeight
+
+        // }))
+        // console.log(myRef.current.children[0].children[1].children[1].offsetHeight)
+        // myRef.current.children.map((el)=> el.children[1].children[1].offsetHeight)
+        // console.log(myRef.current.children)
+
+        let compare = []
+
+        for (let item of myRef.current.children) {
+
+            // console.log(item.children[1].children[1].offsetHeight)
+            compare.push(item.children[1].children[1].offsetHeight)
+            // console.log(`item: ${item} heightcontentedit: ${item.children[1].children[1].children[0].offsetHeight}
+            // height container : ${item.children[1].children[1].offsetHeight}
+            // `)
+            item.style.minWidth = '0px'
+            // console.log(item.children[1].children[1].children[0]) // contenteditable
+            // console.log(item.children[1].children[1]) // container
+
+
+        }
+        console.log('comparae',compare)
+        console.log(Math.max(...compare))
+        setMaxSize(Math.max(...compare))
+        // for (let i = 0; i < myRef.length; i++) {
+        //     console.log(myRef.length); //second console output
+        // }
+        // let arr = [].slice.call(myRef.current.children);
+        // console.log(arr.map(el=>console.log(el.offsetHeight)))
+    }
+    // console.log(myRef.current?.children)
+
+
   return (
     <div className='w-full'>
 
@@ -172,7 +246,10 @@ const BarraDef = ({colore,changeable,editRef,checkRef}) => {
                 <div className='flex justify-center mb-5 '><div className='bg-black shadow-lg  w-min rounded-full text-white' style={{width:'40px',height:'40px'}}><p>{simbolo}</p></div></div>
                 <div style={{width:'160px',height:'fit-content'}} className='border border-black border-sm mx-2    h-60 '>
                 <h2 className='text-sm text-white rounded-md h-20 text-center flex justify-center items-center  mx-2 mt-2 font-medium' style={{backgroundColor:changeable.colore,fontSize:14}}><p className=''>{testo}</p></h2>
+                <div style={{minHeight:`${maxSize}px`}}
+>
                 <div
+                    style={{}}
                     contentEditable
                     id={testo}
                     
@@ -181,15 +258,49 @@ const BarraDef = ({colore,changeable,editRef,checkRef}) => {
                     aria-label="empty textarea"
                     placeholder="..."
                     maxLength={100}
-                    onKeyDown={(e)=>{
-                        onTextChange(e)
-                        console.log(e.currentTarget.offsetHeight)
-                        if (e.currentTarget.offsetHeight > maxSize){
-                            setMaxSize(e.currentTarget.offsetHeight)
-                        }
+                    onFocus={(e)=>{
+                        // e.target.style.minHeight = ''
+                        console.log('focusin')
+                    // e.target.style.width = ''
+                    // console.log('fatto')
+                    // maxSizeRow()    
+                    // maxSizeRow()
+                    }
+                    
+                    
+                    }
+                    
+                    onBlur={(e)=> {
+                        console.log('blurout')
+                        // maxSizeRow()
+                        // e.target.innerHTML =  e.target.innerHTML.replace(/(\r\n|\n|\r)/gm, "");
+
+                        // e.target.style.minHeight = `${maxSize}px`
                     }}
-                    style={{minHeight:`${maxSize}px`}}
+                
+
+                    onInput={(e)=>{
+                        console.log('input')
+                        // e.target.style.minHeight = ''
+                        console.log(e.currentTarget.parentElement.style.minHeight = 'fit-content')
+                        // console.log(e)
+                        // e.target.style.minHeight = ''
+
+                        onTextChange(e)
+                        // console.log(e.currentTarget.offsetHeight)
+                            // if (e.currentTarget.offsetHeight > maxSize){
+                            //     setMaxSize(e.currentTarget.offsetHeight)
+                            // }
+                        // console.log(maxSize)
+                        
+                        // console.log(e.target.innerHTML)
+                        // maxSizeRow()
+                        adjustSize()
+                    }}
+                    // onKeyDown={}
                   />
+                </div>
+               
                   </div>
             </div>
         )
@@ -198,7 +309,7 @@ const BarraDef = ({colore,changeable,editRef,checkRef}) => {
 <div className='flex justify-center'><p className='bg-black shadow-lg  w-min rounded-full text-white' style={{width:'40px',height:'40px'}}>B</p></div>
 
     </div>
-
+    {/* <button onClick={}>CLICCA PER AGGIUSTARE</button> */}
     <button ref={checkRef} className='mt-80 text-green-500' onClick={()=>check()}>check</button>
 </div>
     </div>

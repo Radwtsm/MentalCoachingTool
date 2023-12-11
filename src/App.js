@@ -8,6 +8,7 @@ import { collection, getDocs, getDoc, doc,setDoc,deleteDoc } from "firebase/fire
 import ModalUnstyled from "./components/AdminModal";
 import { db } from "./components/settings/firebaseconfig";
 import BarraDef from "./components/BarraDef";
+import AlignedTable from "./components/AlignedTable/AlignedTable";
 
 
 let listaSinistra = []
@@ -183,6 +184,9 @@ if (direzione==='sinistra') {
     setElBarra,
   }
 
+  // console.log(sinistra.slice(0, sinistra.length).chunk(2).map((pair, index)=>console.log(pair,index)))
+  console.log(sinistra.reverse(),destra.reverse())
+
   return (
     <div className="App text-black App-header border border-black rounded-sm font-bold mt-3" ref={imageRef} >
       
@@ -200,96 +204,111 @@ if (direzione==='sinistra') {
             <option>Metodo</option>
 
           </select>
-          <div className="flex gap-2 w-full"><p style={{marginTop:'11px'}}>:</p><div contentEditable onKeyDown={(e)=>{
+          <div className="flex gap-2 w-full"><p style={{marginTop:'11px'}}>:</p><div contentEditable 
+          onKeyDown={(e)=>{
               if (e.currentTarget.innerHTML.length > 24 && e.key !== 'Backspace'){
                 e.preventDefault()
               }
-            }}   style={{fontSize:31}} placeholder="TITOLO" maxLength={24}  type="text" className="p-2 w-full text-left"></div></div>
-        </div>
-        <div className=" flex justify-center gap-10  my-3  " style={{}}>
-
-        <div
-            contentEditable
-            className="text-sm text-left p-3 text-green-600 border border-black rounded-sm font-normal h-full resize-none	"
-            aria-label="empty textarea"
-            placeholder="Descrizione"
-            style={{minHeight:'104px',height:'auto',fontSize:18,width:'50%'}}
-            // maxLength={300}
-            onKeyDown={(e)=>{
-              if (e.currentTarget.innerHTML.length > 160 && e.key !== 'Backspace'){
-                e.preventDefault()
-              }
             }}  
-          />
+             style={{fontSize:31}} placeholder="TITOLO" maxLength={24}  type="text" className="p-2 w-full text-left"></div></div>
+        </div>
+        
+        
+        
+        <div>
+        <div className=" flex justify-center gap-10  my-3  p-3" style={{}}>
 
 <div
+    contentEditable
+    className="text-sm text-left p-3 text-green-600 border border-black rounded-sm font-normal h-full resize-none	"
+    aria-label="empty textarea"
+    placeholder="Descrizione"
+    style={{height:'auto',fontSize:18,minWidth:'50%',maxWidth:'50%'}}
+    // maxLength={300}
+    // onKeyDown={(e)=>{
+    //   if (e.currentTarget.innerHTML.length > 160 && e.key !== 'Backspace'){
+    //     e.preventDefault()
+    //   }
+    // }}  
+  />
+
+<div
+    contentEditable
+    className="text-sm p-3 text-left text-red-600 border border-black rounded-sm font-normal h-full resize-none	"
+    aria-label="empty textarea"
+    placeholder="Descrizione"
+    style={{height:'auto',fontSize:18,minWidth:'50%',maxWidth:'50%'}}
+    // maxLength={300}
+    // onKeyDown={(e)=>{
+    //   if (e.currentTarget.innerHTML.length > 160 && e.key !== 'Backspace'){
+    //     e.preventDefault()
+    //   }
+    // }}  
+  />
+</div>
+{/* <div className="flex justify-center gap-10  my-3  ">
+  <div className="w-1/2 flex flex-wrap border border-black border-sm p-1">
+
+    {sinistra.reverse().map((el) => {
+      return (
+        <div className="text-sm w-full basis-1/2 " key={el}>
+          <p className="text-left" style={{fontSize:16}}>{el}</p>
+          <div
             contentEditable
-            className="text-sm p-3 text-left text-red-600 border border-black rounded-sm font-normal h-full resize-none	"
+            id={el}
+            // onChange={(e) => isNotEmpty(e.target)}
+            className="text-left text-black text-sm w-full p-1 font-normal resize-none	"
+            style={{fontSize:12,width:'300px'}}
             aria-label="empty textarea"
-            placeholder="Descrizione"
-            style={{height:'auto',fontSize:18,width:'50%'}}
-            // maxLength={300}
+            placeholder="..."
+            maxLength={261}
             onKeyDown={(e)=>{
-              if (e.currentTarget.innerHTML.length > 160 && e.key !== 'Backspace'){
+              if (e.currentTarget.innerHTML.length > 261 && e.key !== 'Backspace'){
+                e.preventDefault()
+              }
+            }}  
+          />
+
+        </div>
+      );
+    })}
+  </div>
+  <div className="w-1/2 flex flex-wrap border border-black border-sm p-2">
+
+    {destra.reverse().map((el) => {
+      return (
+        <div className="text-sm w-full basis-1/2   " key={el}>
+          <p className="text-left" style={{fontSize:16}}>{el}</p>
+
+          <div
+            contentEditable
+            id={el}
+            // onChange={(e) => isNotEmpty(e.target)}
+            className="text-left text-black text-sm w-full p-1 font-normal resize-none	"
+            style={{height:'127px',fontSize:12,width:'300px'}}
+            aria-label="empty textarea"
+            placeholder="..."
+            maxLength={261}
+            onKeyDown={(e)=>{
+              if (e.currentTarget.innerHTML.length > 261 && e.key !== 'Backspace'){
                 e.preventDefault()
               }
             }}  
           />
         </div>
-        <div className="flex justify-center gap-10  my-3  ">
-          <div className="w-1/2 flex flex-wrap border border-black border-sm p-1">
+      );
+    })}
+  </div>
+</div> */}
+{/* //ciao */}
 
-            {sinistra.reverse().map((el) => {
-              return (
-                <div className="text-sm w-full basis-1/2 " key={el}>
-                  <p className="text-left" style={{fontSize:16}}>{el}</p>
-                  <div
-                    contentEditable
-                    id={el}
-                    // onChange={(e) => isNotEmpty(e.target)}
-                    className="text-left text-black text-sm w-full p-1 font-normal resize-none	"
-                    style={{height:'127px',fontSize:12,width:'300px'}}
-                    aria-label="empty textarea"
-                    placeholder="..."
-                    maxLength={261}
-                    onKeyDown={(e)=>{
-                      if (e.currentTarget.innerHTML.length > 261 && e.key !== 'Backspace'){
-                        e.preventDefault()
-                      }
-                    }}  
-                  />
-
-                </div>
-              );
-            })}
-          </div>
-          <div className="w-1/2 flex flex-wrap border border-black border-sm p-2">
-
-            {destra.reverse().map((el) => {
-              return (
-                <div className="text-sm w-full basis-1/2   " key={el}>
-                  <p className="text-left" style={{fontSize:16}}>{el}</p>
-
-                  <div
-                    contentEditable
-                    id={el}
-                    // onChange={(e) => isNotEmpty(e.target)}
-                    className="text-left text-black text-sm w-full p-1 font-normal resize-none	"
-                    style={{height:'127px',fontSize:12,width:'300px'}}
-                    aria-label="empty textarea"
-                    placeholder="..."
-                    maxLength={261}
-                    onKeyDown={(e)=>{
-                      if (e.currentTarget.innerHTML.length > 261 && e.key !== 'Backspace'){
-                        e.preventDefault()
-                      }
-                    }}  
-                  />
-                </div>
-              );
-            })}
-          </div>
+  {/* inizio */}
+  <AlignedTable/>
+{/* fine */}
         </div>
+        
+
+
         <div style={{height:'93px'}}>
           <p className="text-left text-sm text-green-600" style={{fontSize:16}}>Trasformazione che cerca</p>
           <div
@@ -299,13 +318,13 @@ if (direzione==='sinistra') {
                     className="text-left text-sm w-full h-full p-3 rounded-sm  font-normal resize-none	"
                     aria-label="empty textarea"
                     placeholder="..."
-                    style={{height:'64px',fontSize:12}}
+                    style={{height:'auto',fontSize:12}}
                     maxLength={228}
-                    onKeyDown={(e)=>{
-                      if (e.currentTarget.innerHTML.length > 400 && e.key !== 'Backspace'){
-                        e.preventDefault()
-                      }
-                    }}  
+                    // onKeyDown={(e)=>{
+                    //   if (e.currentTarget.innerHTML.length > 400 && e.key !== 'Backspace'){
+                    //     e.preventDefault()
+                    //   }
+                    // }}  
                   />
         </div>
       </header>
