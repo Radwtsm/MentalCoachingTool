@@ -8,7 +8,8 @@ const Campo = ({etichetta}) => {
                   <div
                     contentEditable
                     // onChange={(e) => isNotEmpty(e.target)}
-                    className="text-left text-black text-sm w-full p-1 font-normal resize-none	"
+                    className="text-left text-black text-sm w-full p-1 font-normal resize- none	"
+                    // style={{fontSize:12,width:'300px',minHeight:'60px'}} PER MOSTRARE FIXED
                     style={{fontSize:12,width:'300px'}}
                     aria-label="empty textarea"
                     placeholder="..."

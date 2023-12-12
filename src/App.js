@@ -9,6 +9,7 @@ import ModalUnstyled from "./components/AdminModal";
 import { db } from "./components/settings/firebaseconfig";
 import BarraDef from "./components/BarraDef";
 import AlignedTable from "./components/AlignedTable/AlignedTable";
+import userEvent from "@testing-library/user-event";
 
 
 let listaSinistra = []
@@ -82,19 +83,58 @@ function App() {
   const imageRef = useRef();
   const [file, setFile] = useState();
   const [elBarra,setElBarra] = useState([])
+  const [titolo,setTitolo] = useState('')
   
   const editRef = useRef()
   const checkRef = useRef()
   const adminRef =useRef()
   const saveRef =useRef()
+  const selectRef = useRef()
+  const renSelectRef = useRef()
 
+
+  // function changeSelect(){
+  //   let value = selectRef.current.value 
+
+
+  //   // console.log(selectRef.current.value)
+  //   // console.log(value)
+  //   setTitolo(value)
+  //   selectRef.current.classList.add = 'hidden'
+  //   renSelectRef.current.classList.remove('hidden')
+
+  // }
+
+  // function revertChangeSelected(){
+  //   selectRef.current.classList.remove('hidden')
+  //   renSelectRef.current.classList.add('hidden')
+  // }
+
+  const toggleInput = () => {
+      if (selectRef.current.classList.contains('hidden')) {
+        selectRef.current.classList.remove('hidden')
+      } else {
+        selectRef.current.classList.add('hidden')
+      }
+      
+      if (renSelectRef.current.classList.contains('hidden')) {
+        renSelectRef.current.classList.remove('hidden')
+      } else {
+        renSelectRef.current.classList.add('hidden')
+      }
+    
+  }
 
   const exportAsImage = async (el, imageFileName,) => {
+
+    // changeSelect()
+
     checkRef.current.classList.add('invisible')
     editRef.current.classList.add('invisible')
     adminRef.current.classList.add('invisible')  
     saveRef.current.classList.add('invisible')     
     const style = document.createElement('style');
+
     document.head.appendChild(style);
     style.sheet?.insertRule('body > div:last-child img { display: inline-block; }');
   
@@ -106,10 +146,14 @@ function App() {
 
 
     downloadImage(image, imageFileName);
+
+    
+
     };
 
     const downloadImage = (blob, fileName) => {
-     
+
+
   const fakeLink = window.document.createElement("a");
   fakeLink.style = "display:none;";
   fakeLink.download = fileName;
@@ -126,6 +170,7 @@ function App() {
     editRef.current.classList.remove('invisible')
     adminRef.current.classList.remove('invisible')  
     saveRef.current.classList.remove('invisible')     
+      // revertChangeSelected()
   // style.remove()
   };
     async function addLista(direzione,testo){
@@ -196,7 +241,8 @@ if (direzione==='sinistra') {
           {!file && <input className="text-sm" type="file" onChange={handleChange} />}
           <img style={{width:'78px'}} src={file} alt={'img loaded by user'}/>
           </div>
-          <select style={{fontSize:31}} name="TIPO" id="tipo">
+          <div ref={renSelectRef}  className="hidden" style={{wordWrap:'unset'}} contentEditable>{titolo}</div>
+          <select onChange={(e)=>setTitolo(e.target.value)} ref={selectRef} style={{fontSize:31}} name="TIPO" id="tipo">
             <option>Sistema</option>
             <option> Schema Logico</option>
             <option>Protocollo</option>
@@ -333,7 +379,18 @@ if (direzione==='sinistra') {
       <BarraDef checkRef={checkRef} editRef={editRef} changeable={changeable}/>
       </div>
       
-      <button className="" ref={saveRef} onClick={()=>exportAsImage(imageRef.current,'test')}>SAVE PICT</button>
+      <button className="" ref={saveRef} onClick={()=>{
+        
+        // selectRef.current.classList.add('hidden')
+        // renSelectRef.current.classList.remove('hidden')
+        toggleInput()
+        exportAsImage(imageRef.current,'test')
+        toggleInput()
+
+    
+      }
+        
+        }>SAVE PICT</button>
 
       <ModalUnstyled adminRef={adminRef} changeable={changeable} />
     </div>
