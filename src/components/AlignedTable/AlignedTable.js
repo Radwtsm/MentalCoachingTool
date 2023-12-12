@@ -9,7 +9,7 @@ const AlignedTable = () => {
         
         <Campo etichetta={'Paure'}/>     
         <Campo etichetta={'Frustrazioni'}/>
-        <div className='w-32'></div>
+        <div className='w-60'></div>
         <Campo etichetta={'Desideri'}/>
         <Campo etichetta={'Ambizioni'}/>
         </div>
@@ -17,7 +17,7 @@ const AlignedTable = () => {
         <div className='flex'>
         <Campo etichetta={'Ansie'}/>     
         <Campo etichetta={'Esigenze/punti di dolore'}/>
-        <div className='w-32'></div>
+        <div className='w-60'></div>
         <Campo etichetta={'Perchè'}/>
         <Campo etichetta={'Benefici che desidera'}/>
         </div>
@@ -25,7 +25,7 @@ const AlignedTable = () => {
         <div className='flex'>
         <Campo etichetta={'Dubbi/obiezioni'}/>     
         <Campo etichetta={'Emozioni che prova ora'}/>
-        <div className='w-32'></div>
+        <div className='w-60'></div>
         <Campo etichetta={'Risoluzione dubbi/obiezioni'}/>
         <Campo etichetta={'Emozioni che vuole provare'}/>
         </div>
