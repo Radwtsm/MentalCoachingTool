@@ -244,7 +244,7 @@ const BarraDef = ({colore,changeable,editRef,checkRef}) => {
         return(
             <div key={testo} className='overflow-visible w-30'>
                 <div className='flex justify-center mb-5 '><div className='bg-black shadow-lg  w-min rounded-full text-white' style={{width:'40px',height:'40px'}}><p>{simbolo}</p></div></div>
-                <div style={{width:'160px',height:'fit-content'}} className='border border-black border-sm mx-2    h-60 '>
+                <div style={{width:'200px',height:'fit-content'}} className='border border-black border-sm mx-2    h-60 '>
                 <h2 className='text-sm text-white rounded-md h-20 text-center flex justify-center items-center  mx-2 mt-2 font-medium' style={{backgroundColor:changeable.colore,fontSize:14}}><p className=''>{testo}</p></h2>
                 <div style={{minHeight:`${maxSize}px`}}
 >

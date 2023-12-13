@@ -18,7 +18,7 @@ const AlignedTable = () => {
         <Campo etichetta={'Ansie'}/>     
         <Campo etichetta={'Esigenze/punti di dolore'}/>
         <div className='mx-20'></div>
-        <Campo etichetta={'Perchè'}/>
+        <Campo etichetta={'Perchè vuole cambiare'}/>
         <Campo etichetta={'Benefici che desidera'}/>
         </div>
            

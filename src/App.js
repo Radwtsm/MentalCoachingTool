@@ -266,7 +266,7 @@ if (direzione==='sinistra') {
 
 <div
     contentEditable
-    className="text-sm text-left p-3 text-green-600 border border-black rounded-sm font-normal h-full resize-none	"
+    className="text-sm text-left p-3 text-red-600 border border-black rounded-sm font-normal h-full resize-none	"
     aria-label="empty textarea"
     placeholder="Descrizione"
     style={{height:'auto',fontSize:18,minWidth:'50%',maxWidth:'50%'}}
@@ -280,7 +280,7 @@ if (direzione==='sinistra') {
 
 <div
     contentEditable
-    className="text-sm p-3 text-left text-red-600 border border-black rounded-sm font-normal h-full resize-none	"
+    className="text-sm p-3 text-left text-green-600 border border-black rounded-sm font-normal h-full resize-none	"
     aria-label="empty textarea"
     placeholder="Descrizione"
     style={{height:'auto',fontSize:18,minWidth:'50%',maxWidth:'50%'}}
